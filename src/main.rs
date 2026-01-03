@@ -21,5 +21,16 @@ fn main() {
         // afficher dans le terminal les result des columns
         println!("Les Noms : {}", record.get(0).unwrap());
         println!("Les Prénom : {}", record.get(1).unwrap());
+        println!("la classe : {}", record.get(4).unwrap());
     }
+
+    // lire l'entrer Utilsateur et faire un choix d'export ou non
+    println!("Voulez vous exporter en Format Json ? ");
+    println!("OUI ou NON");
+    let mut input = String::new();
+    let choix = std::io::stdin().read_line(&mut input).unwrap();
+
+
+
+
 }
