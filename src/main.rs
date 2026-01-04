@@ -30,7 +30,7 @@ fn main() {
     let mut input = String::new();
     let choix = std::io::stdin().read_line(&mut input).unwrap();
 
-
-
+    // Regarder les vidéos pour JSON serializer et inversement
+    // pas beaucoup mais hasoul on est dimanche ok
 
 }
