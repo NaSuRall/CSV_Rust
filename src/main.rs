@@ -67,4 +67,5 @@ async fn main() -> Result<(), reqwest::Error> {
 // regarder et configurer Dioxus pas grand chose de plus demain mise a 0 commencement du projet
 // Dev le lecteur de CSV et exportrer transformer le dossier en json
 // objectif
+// github key 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
 
