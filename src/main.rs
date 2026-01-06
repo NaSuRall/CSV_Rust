@@ -34,12 +34,11 @@
 //     // pas beaucoup mais hasoul on est dimanche ok
 //
 // }
-use serde::{Serialize, Deserialize};
-
+use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug)]
 struct Todo {
-    #[serde(rename="userId")]
+    #[serde(rename = "userId")]
     user_id: i32,
     id: Option<i32>,
     title: String,
@@ -64,3 +63,8 @@ async fn main() -> Result<(), reqwest::Error> {
 
     Ok(())
 }
+
+// regarder et configurer Dioxus pas grand chose de plus demain mise a 0 commencement du projet
+// Dev le lecteur de CSV et exportrer transformer le dossier en json
+// objectif
+
