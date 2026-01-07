@@ -68,3 +68,7 @@ async fn main() -> Result<(), reqwest::Error> {
 // Dev le lecteur de CSV et exportrer transformer le dossier en json
 // objectif
 
+// 07/01/2026 j'ai fait la configuration de mon serveur de dev Ubuntu serveur pas eu trop le temps
+// de faire du rest c'est mb demain je me donne a fond ok
+//
+// objectif de demain faire le CSV convertisseur en JSON
