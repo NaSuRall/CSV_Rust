@@ -1,6 +1,7 @@
 use csv::{Reader, ReaderBuilder};
+use serde::Serialize;
 
-#[derive(serde::Deserialize, Debug)]
+#[derive(serde::Deserialize, Debug, Serialize, Clone)]
 struct Personne {
     nom: String,
     prenom: String,
@@ -10,6 +11,8 @@ struct Personne {
 }
 
 fn main() {
+    let mut tab: Vec<Personne> = Vec::new();
+
     let file_name = "tableConvert.com_ihxp8w.csv";
     let mut builder = ReaderBuilder::new();
     builder
@@ -28,11 +31,11 @@ fn main() {
 
     for record in my_reader.deserialize() {
         let var: Personne = record.unwrap();
-
-        println!("{:?}", var.nom);
-        println!("{:?}", var.prenom);
-        println!("{:?}", var.email);
-        println!("{:?}", var.tel);
-        println!("{:?}", var.clases);
+        tab.push(var);
     }
+
+    // Faire en sorte D'analyser 2 CSV et les faire sortir en un seul JSON
+
+    let j = serde_json::to_string(&tab).unwrap();
+    println!("{}", j);
 }
