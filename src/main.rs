@@ -1,4 +1,4 @@
-use csv::{Reader, ReaderBuilder};
+use csv::ReaderBuilder;
 use serde::Serialize;
 
 #[derive(serde::Deserialize, Debug, Serialize, Clone)]
@@ -6,36 +6,35 @@ struct Personne {
     nom: String,
     prenom: String,
     email: String,
-    tel: i32,
-    clases: i32,
+    tel: String,
+    clases: String,
 }
 
 fn main() {
-    let mut tab: Vec<Personne> = Vec::new();
+    // let mut tab: Vec<Personne> = Vec::new();
+    let json1 = reader("tableConvert.com_ihxp8w.csv");
+    println!("json 1 = {}", json1);
 
-    let file_name = "tableConvert.com_ihxp8w.csv";
+    let json2 = reader("data.csv");
+    println!("json 2 = {}", json2);
+}
+
+fn reader(file_name: &str) -> String {
     let mut builder = ReaderBuilder::new();
     builder
         .double_quote(false)
         .comment(Some(b'-'))
         .delimiter(b',');
 
-    let result = builder.from_path(file_name);
+    let mut my_reader = builder.from_path(file_name).expect("File not found");
 
-    if result.is_err() {
-        println!("File not Find");
-        std::process::exit(9);
-    }
-
-    let mut my_reader: Reader<std::fs::File> = result.unwrap();
+    let mut tab: Vec<Personne> = Vec::new();
 
     for record in my_reader.deserialize() {
         let var: Personne = record.unwrap();
         tab.push(var);
     }
 
-    // Faire en sorte D'analyser 2 CSV et les faire sortir en un seul JSON
-
-    let j = serde_json::to_string(&tab).unwrap();
-    println!("{}", j);
+    serde_json::to_string(&tab).unwrap()
+    //println!("{}", j);
 }
