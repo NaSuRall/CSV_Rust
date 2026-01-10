@@ -41,4 +41,7 @@ fn reader(file_name: &str) -> String {
 
 // faire un fonction qui va pouvoir lire deux fichier et les annalyser pour resortir un seul JSON
 #[warn(dead_code)]
-fn reader_deux() {}
+fn reader_deux(file_1: &str, file_2: &str) -> String {
+    reader(file_1);
+    reader(file_2)
+}
