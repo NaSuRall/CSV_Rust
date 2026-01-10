@@ -38,3 +38,7 @@ fn reader(file_name: &str) -> String {
     serde_json::to_string(&tab).unwrap()
     //println!("{}", j);
 }
+
+// faire un fonction qui va pouvoir lire deux fichier et les annalyser pour resortir un seul JSON
+#[warn(dead_code)]
+fn reader_deux() {}
