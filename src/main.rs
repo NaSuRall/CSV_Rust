@@ -45,3 +45,5 @@ fn reader_deux(file_1: &str, file_2: &str) -> String {
     reader(file_1);
     reader(file_2)
 }
+
+// j'ai pas fait mon commit aled il est trop tard je continue mais apres 00h lol
