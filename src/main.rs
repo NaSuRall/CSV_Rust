@@ -11,16 +11,19 @@ struct Personne {
 }
 
 fn main() {
-    // let mut tab: Vec<Personne> = Vec::new();
-    // let json1 = reader("tableConvert.com_ihxp8w.csv");
-    //println!("json 1 = {}", json1);
+    // Fonction READER va lire le fichier et le retourner
+    let json1 = reader("tableConvert.com_ihxp8w.csv");
+    println!("json 1 = {}", json1);
+    let json2 = reader("data.csv");
+    println!("json 2 = {}", json2);
 
-    // let json2 = reader("data.csv");
-    // println!("json 2 = {}", json2);
-
+    // Fonction READER_DEUX va lire les fichier et retourner un grand JSON
     let json = reader_deux("tableConvert.com_ihxp8w.csv", "data.csv");
-    println!("{}", json);
+    println!("{:#?}", json);
 }
+
+// Fonction reader qui va avoir en paramettre "file_name" et retourner un json
+// cette fonction va annalyser le fichier CSV et le retoutner en format JSON
 
 fn reader(file_name: &str) -> String {
     let mut builder = ReaderBuilder::new();
@@ -39,10 +42,11 @@ fn reader(file_name: &str) -> String {
     }
 
     serde_json::to_string(&tab).unwrap()
-    //println!("{}", j);
 }
 
-// faire un fonction qui va pouvoir lire deux fichier et les annalyser pour resortir un seul JSON
+// Fonction reader_deux va avoir 2 paramettre : file_1 et file_2 : qui vont etre les fichier CSV
+// cette fonction va reunir les deux fichier CSV et en faire UN seul grand JSON
+
 fn reader_deux(file_1: &str, file_2: &str) -> String {
     let reader1 = reader(file_1);
     let reader2 = reader(file_2);
@@ -54,5 +58,3 @@ fn reader_deux(file_1: &str, file_2: &str) -> String {
 
     serde_json::to_string(&next_vec).unwrap()
 }
-
-// j'ai pas fait mon commit aled il est trop tard je continue mais apres 00h lol
