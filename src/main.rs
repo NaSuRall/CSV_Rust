@@ -12,11 +12,14 @@ struct Personne {
 
 fn main() {
     // let mut tab: Vec<Personne> = Vec::new();
-    let json1 = reader("tableConvert.com_ihxp8w.csv");
-    println!("json 1 = {}", json1);
+    // let json1 = reader("tableConvert.com_ihxp8w.csv");
+    //println!("json 1 = {}", json1);
 
-    let json2 = reader("data.csv");
-    println!("json 2 = {}", json2);
+    // let json2 = reader("data.csv");
+    // println!("json 2 = {}", json2);
+
+    let json = reader_deux("tableConvert.com_ihxp8w.csv", "data.csv");
+    println!("{}", json);
 }
 
 fn reader(file_name: &str) -> String {
@@ -40,10 +43,16 @@ fn reader(file_name: &str) -> String {
 }
 
 // faire un fonction qui va pouvoir lire deux fichier et les annalyser pour resortir un seul JSON
-#[warn(dead_code)]
 fn reader_deux(file_1: &str, file_2: &str) -> String {
-    reader(file_1);
-    reader(file_2)
+    let reader1 = reader(file_1);
+    let reader2 = reader(file_2);
+
+    let mut next_vec: Vec<String> = Vec::new();
+
+    next_vec.push(reader1);
+    next_vec.push(reader2);
+
+    serde_json::to_string(&next_vec).unwrap()
 }
 
 // j'ai pas fait mon commit aled il est trop tard je continue mais apres 00h lol
