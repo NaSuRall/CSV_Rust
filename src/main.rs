@@ -11,24 +11,14 @@ struct Personne {
 }
 
 fn main() {
-    // Fonction READER va lire le fichier et le retourner
-    // let json1 = reader("tableConvert.com_ihxp8w.csv");
-    // println!("json 1 = {}", json1);
-    // let json2 = reader("data.csv");
-    // println!("json 2 = {}", json2);
-
-    // Fonction READER_DEUX va lire les fichier et retourner un grand JSON
-    // let json = reader_deux("tableConvert.com_ihxp8w.csv", "data.csv");
-    // println!("{:#?}", json);
-
     let files = vec!["tableConvert.com_ihxp8w.csv", "data.csv"];
-    reader_trois(&files);
+    let json3 = reader_trois(files);
+    println!("{:?}", json3);
 }
 
-// Fonction reader qui va avoir en paramettre "file_name" et retourner un json
-// cette fonction va annalyser le fichier CSV et le retoutner en format JSON
-
-fn reader(file_name: &str) -> String {
+// Fonction qui va pouvoir lire un fichier CSV et en retourner un Vecteur
+// avec en paramettre "file_name"
+fn reader(file_name: &str) -> Vec<Personne> {
     let mut builder = ReaderBuilder::new();
     builder
         .double_quote(false)
@@ -44,31 +34,21 @@ fn reader(file_name: &str) -> String {
         tab.push(var);
     }
 
-    serde_json::to_string(&tab).unwrap()
+    return tab;
 }
 
-// Fonction reader_deux va avoir 2 paramettre : file_1 et file_2 : qui vont etre les fichier CSV
-// cette fonction va reunir les deux fichier CSV et en faire UN seul grand JSON
+// Fonction qui va recuperer les fichier du tab Vecteur et les retourner en un seul fichier JSON
+fn reader_trois(files: Vec<&str>) -> String {
+    let mut resultat: Vec<Personne> = Vec::new();
 
-fn reader_deux(file_1: &str, file_2: &str) -> String {
-    let reader1 = reader(file_1);
-    let reader2 = reader(file_2);
-
-    let mut next_vec: Vec<String> = Vec::new();
-
-    next_vec.push(reader1);
-    next_vec.push(reader2);
-
-    serde_json::to_string(&next_vec).unwrap()
-}
-
-// Fonction reader_trois va avoir en paramettre un Tableau pour y mettre autant de fichier
-// il va iterer sur le tableau recuperer et annalyser tout les fichier
-// et en faire un gros JSON
-//
-fn reader_trois(files: &Vec<&str>) {
-    for valeur in files.iter() {
-        let value = reader(&valeur);
-        println!("{}", value);
+    for file in files {
+        let mut content = reader(file);
+        resultat.append(&mut content);
     }
+
+    let pop = serde_json::to_string(&resultat).unwrap();
+    return pop;
 }
+
+// .append vient prendre tout ce qu'il y a dans content et le met dans resultat et vide content
+// appres
