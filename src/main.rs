@@ -1,5 +1,6 @@
 use csv::ReaderBuilder;
 use serde::Serialize;
+mod text;
 
 #[derive(serde::Deserialize, Debug, Serialize, Clone)]
 struct Personne {
@@ -14,6 +15,8 @@ fn main() {
     let files = vec!["tableConvert.com_ihxp8w.csv", "data.csv"];
     let json3 = reader_trois(files);
     println!("{:?}", json3);
+
+    text::main();
 }
 
 // Fonction qui va pouvoir lire un fichier CSV et en retourner un Vecteur

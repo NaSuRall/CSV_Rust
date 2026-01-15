@@ -1,0 +1,3 @@
+Bonjour je suis Romain Voici le text dans le Fichier !!
+Analyse : [0,2,"bonjour"]
+Voici le texte ajouterVoici le texte ajouterVoici le texte ajouter
