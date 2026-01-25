@@ -55,3 +55,5 @@ fn reader_trois(files: Vec<&str>) -> String {
 
 // .append vient prendre tout ce qu'il y a dans content et le met dans resultat et vide content
 // appres
+//
+// Final Commit FIn de projet
